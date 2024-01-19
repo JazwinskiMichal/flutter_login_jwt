@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_login_jwt/data/constants.dart';
+import 'package:flutter_login_jwt/data/api_constants.dart';
 import 'package:flutter_login_jwt/domain/repositories/authentication_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,8 +9,7 @@ const storage = FlutterSecureStorage();
 
 class DataAuthenticationRepository extends AuthenticationRepository {
   @override
-  Future<http.Response> requestAccessToken(
-      String email, String password) async {
+  Future<http.Response> requestAccessToken(String email, String password) async {
     var parameters = {
       'username': email,
       'password': password,

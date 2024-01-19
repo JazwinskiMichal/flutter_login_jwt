@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_login_jwt/app/pages/refresh_token/refresh_token_view.dart';
+import 'package:flutter_login_jwt/app/pages/navigator.dart';
 import 'package:flutter_login_jwt/data/helpers/http_overrides_helper.dart';
+import 'package:flutter_login_jwt/domain/entities/routes.dart';
 
 void main() {
   HttpOverrides.global = HttpOverridesHelper();
@@ -19,7 +20,8 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const RefreshTokenPage(),
+      initialRoute: Routes.home,
+      onGenerateRoute: AppNavigator.onGenerateRoute,
     );
   }
 }
