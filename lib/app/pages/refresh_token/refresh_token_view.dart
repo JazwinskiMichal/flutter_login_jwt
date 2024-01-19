@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart' as clean_architecture;
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:flutter_login_jwt/app/pages/navigator.dart';
 import 'package:flutter_login_jwt/app/pages/refresh_token/refresh_token_controller.dart';
 
 import '../../../data/repositories/data_authentication_repository.dart';
@@ -49,12 +50,26 @@ class RefreshTokenPageState extends clean_architecture.ViewState<RefreshTokenPag
                             : Column(
                                 children: [
                                   const Text('Cannot refresh token'),
-                                  TextButton(
-                                    onPressed: () {
-                                      controller.refreshAccessToken();
-                                    },
-                                    child: const Text('Retry'),
-                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      // Retry button
+                                      TextButton(
+                                        onPressed: () {
+                                          controller.refreshAccessToken();
+                                        },
+                                        child: const Text('Retry'),
+                                      ),
+
+                                      // Login button
+                                      TextButton(
+                                        onPressed: () {
+                                          AppNavigator.navigateToLogin(context);
+                                        },
+                                        child: const Text('Login'),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               );
                   },

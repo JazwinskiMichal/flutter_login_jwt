@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login_jwt/app/pages/login/login_view.dart';
 import 'package:flutter_login_jwt/app/pages/refresh_token/refresh_token_view.dart';
 import 'package:flutter_login_jwt/domain/entities/routes.dart';
 
@@ -10,8 +11,14 @@ class AppNavigator {
         return MaterialPageRoute(builder: (context) => const RefreshTokenPage());
       case Routes.refreshToken:
         return MaterialPageRoute(builder: (context) => const RefreshTokenPage());
+      case Routes.login:
+        return MaterialPageRoute(builder: (context) => const LoginPage());
     }
     return _generateErrorRoute();
+  }
+
+  static void navigateToLogin(BuildContext context) {
+    Navigator.of(context).pushNamed(Routes.login);
   }
 
   static Route<dynamic> _generateErrorRoute() {

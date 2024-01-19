@@ -6,8 +6,7 @@ class RefreshTokenPresenter extends Presenter {
   Function? onRefreshFailed;
 
   final RefreshTokenUseCase refreshTokenUseCase;
-  RefreshTokenPresenter(authenticationRepo)
-      : refreshTokenUseCase = RefreshTokenUseCase(authenticationRepo);
+  RefreshTokenPresenter(authenticationRepo) : refreshTokenUseCase = RefreshTokenUseCase(authenticationRepo);
 
   void refreshAccessToken() {
     refreshTokenUseCase.execute(_RefreshTokenUseCaseObserver(this));
@@ -19,8 +18,7 @@ class RefreshTokenPresenter extends Presenter {
   }
 }
 
-class _RefreshTokenUseCaseObserver
-    extends Observer<RefreshTokenUseCaseResponse> {
+class _RefreshTokenUseCaseObserver extends Observer<RefreshTokenUseCaseResponse> {
   final RefreshTokenPresenter presenter;
   _RefreshTokenUseCaseObserver(this.presenter);
 

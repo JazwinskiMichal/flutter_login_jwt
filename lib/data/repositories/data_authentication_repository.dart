@@ -25,7 +25,7 @@ class DataAuthenticationRepository extends AuthenticationRepository {
       body: {
         'client_id': clientId,
         'client_secret': clientSecret,
-        'grant_type': grantType,
+        'grant_type': 'icpen_credentials',
         ...parameters,
       },
     );
@@ -46,7 +46,7 @@ class DataAuthenticationRepository extends AuthenticationRepository {
       body: {
         'client_id': clientId,
         'client_secret': clientSecret,
-        'grant_type': grantType,
+        'grant_type': 'refresh_token',
         'refresh_token': refreshToken ?? '',
       },
     );
