@@ -39,7 +39,6 @@ class TemplatesController extends Controller {
     getTemplates();
 
     templatesPresenter.onGetTemplatesSuccess = (List newTemplates) {
-      // TODO: When onScrollEnd add new templates to the list, instead of replacing them
       templates.addAll(newTemplates as Iterable<Template>);
       isLoading = false;
       refreshUI();
