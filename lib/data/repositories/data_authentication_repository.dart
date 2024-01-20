@@ -21,7 +21,7 @@ class DataAuthenticationRepository extends AuthenticationRepository {
 
     // Request the token
     var response = await client.post(
-      Uri.parse(baseUrl),
+      Uri.parse(tokenUrl),
       body: {
         'client_id': clientId,
         'client_secret': clientSecret,
@@ -42,7 +42,7 @@ class DataAuthenticationRepository extends AuthenticationRepository {
 
     // Request the new token
     var response = await client.post(
-      Uri.parse(baseUrl),
+      Uri.parse(tokenUrl),
       body: {
         'client_id': clientId,
         'client_secret': clientSecret,

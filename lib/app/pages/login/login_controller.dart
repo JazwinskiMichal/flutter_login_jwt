@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter_login_jwt/app/pages/login/login_presenter.dart';
+import 'package:flutter_login_jwt/app/pages/navigator.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -21,6 +22,13 @@ class LoginController extends Controller {
       : loginPresenter = LoginPresenter(authenticationRepo),
         super();
 
+  void login(String email, String password) {
+    _isLoggingIn = true;
+    _isAuthenticated = false;
+    loginPresenter.login(email, password);
+    refreshUI();
+  }
+
   @override
   void initListeners() {
     loginPresenter.onLoginSuccess = (http.Response response) {
@@ -28,6 +36,9 @@ class LoginController extends Controller {
       _isLoggingIn = false;
 
       refreshUI();
+
+      // Navigate to the next page
+      AppNavigator.navigateToTemplates(getContext());
     };
 
     loginPresenter.onLoginFailed = (e) {
@@ -42,13 +53,6 @@ class LoginController extends Controller {
 
       refreshUI();
     };
-  }
-
-  void login(String email, String password) {
-    _isLoggingIn = true;
-    _isAuthenticated = false;
-    loginPresenter.login(email, password);
-    refreshUI();
   }
 
   @override

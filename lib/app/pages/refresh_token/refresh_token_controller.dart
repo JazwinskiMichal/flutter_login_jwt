@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:flutter_login_jwt/app/pages/navigator.dart';
 import 'package:flutter_login_jwt/app/pages/refresh_token/refresh_token_presenter.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,6 +21,13 @@ class RefreshTokenController extends Controller {
       : refreshTokenPresenter = RefreshTokenPresenter(authenticationRepo),
         super();
 
+  void refreshAccessToken() {
+    _isRefreshing = true;
+    _isRefreshed = false;
+    refreshTokenPresenter.refreshAccessToken();
+    refreshUI();
+  }
+
   @override
   void initListeners() {
     refreshAccessToken();
@@ -29,6 +37,9 @@ class RefreshTokenController extends Controller {
       _isRefreshing = false;
 
       refreshUI();
+
+      // Navigate to the next page
+      AppNavigator.navigateToTemplates(getContext());
     };
 
     refreshTokenPresenter.onRefreshFailed = (e) {
@@ -43,13 +54,6 @@ class RefreshTokenController extends Controller {
 
       refreshUI();
     };
-  }
-
-  void refreshAccessToken() {
-    _isRefreshing = true;
-    _isRefreshed = false;
-    refreshTokenPresenter.refreshAccessToken();
-    refreshUI();
   }
 
   @override

@@ -1,7 +1,8 @@
-const String baseUrl = 'https://ip3-test.serwer.icpen.pl/auth/connect/token';
-const String clientId = 'icpendesktopapp';
+const String tokenUrl = 'https://dev.icpen.cloud/auth/connect/token';
+const String templatesUrl = 'https://dev.icpen.cloud/api/nativestylus/templates';
+const String clientId = 'nativestylusapp';
 const String clientSecret = '';
-const String scope = 'desktop_bff_api devices_signalrhub integration_amms_api offline_access openid profile';
+const String scope = 'openid profile native_stylus_bff_api devices_signalrhub offline_access';
 const String tokenKey = 'access_token';
 const String refreshTokenKey = 'refresh_token';
 const String storageTokenKey = 'token';

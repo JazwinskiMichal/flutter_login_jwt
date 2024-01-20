@@ -10,13 +10,11 @@ class RefreshTokenUseCase extends UseCase<RefreshTokenUseCaseResponse, void> {
   RefreshTokenUseCase(this._authenticationRepository);
 
   @override
-  Future<Stream<RefreshTokenUseCaseResponse?>> buildUseCaseStream(
-      void params) async {
+  Future<Stream<RefreshTokenUseCaseResponse?>> buildUseCaseStream(void params) async {
     final controller = StreamController<RefreshTokenUseCaseResponse>();
 
     try {
-      http.Response response =
-          await _authenticationRepository.refreshAccessToken();
+      http.Response response = await _authenticationRepository.refreshAccessToken();
 
       await Future.delayed(const Duration(seconds: 1));
 

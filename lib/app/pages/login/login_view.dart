@@ -20,6 +20,7 @@ class LoginPageState extends clean_architecture.ViewState<LoginPage, LoginContro
   @override
   Widget get view {
     return Scaffold(
+      key: globalKey,
       appBar: AppBar(
         title: const Text('Login Page'),
       ),
