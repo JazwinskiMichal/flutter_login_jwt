@@ -16,7 +16,7 @@ class TemplatesController extends Controller {
 
   void getTemplates() {
     isLoading = true;
-    refreshUI();
+    notifyListeners();
     templatesPresenter.getTemplates(20, currentPage);
   }
 
@@ -38,16 +38,19 @@ class TemplatesController extends Controller {
     // Get templates
     getTemplates();
 
+    templatesPresenter.onGetTemplatesComplete = () {
+      isLoading = false;
+      notifyListeners();
+    };
+
     templatesPresenter.onGetTemplatesSuccess = (List newTemplates) {
       templates.addAll(newTemplates as Iterable<Template>);
-      isLoading = false;
-      refreshUI();
     };
 
     templatesPresenter.onGetTemplatesFailed = (e) {
       print('TemplatesController: onGetTemplatesFailed');
       isLoading = false;
-      refreshUI();
+      notifyListeners();
     };
   }
 

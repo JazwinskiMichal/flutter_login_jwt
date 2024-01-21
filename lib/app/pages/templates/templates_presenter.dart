@@ -2,6 +2,7 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter_login_jwt/domain/usecases/get_templates_usecase.dart';
 
 class TemplatesPresenter extends Presenter {
+  Function? onGetTemplatesComplete;
   Function? onGetTemplatesSuccess;
   Function? onGetTemplatesFailed;
 
@@ -23,7 +24,9 @@ class _GetTemplatesUseCaseObserver extends Observer<GetTemplatesUseCaseResponse>
   _GetTemplatesUseCaseObserver(this.presenter);
 
   @override
-  void onComplete() {}
+  void onComplete() {
+    presenter.onGetTemplatesComplete!();
+  }
 
   @override
   void onError(e) {

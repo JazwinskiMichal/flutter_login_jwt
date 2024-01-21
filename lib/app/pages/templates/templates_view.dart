@@ -23,17 +23,21 @@ class TemplatesPageState extends clean_architecture.ViewState<TemplatesPage, Tem
       ),
       body: ControlledWidgetBuilder<TemplatesController>(
         builder: (context, controller) {
+          final List<Widget> templateWidgets = controller.templates.map((template) {
+            return ListTile(
+              title: Text(template.id),
+              subtitle: Text(template.name),
+            );
+          }).toList();
+
           return Scrollbar(
             child: Stack(
               children: [
                 ListView.builder(
-                  itemCount: controller.templates.length,
+                  itemCount: templateWidgets.length,
                   controller: controller.scrollController,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(controller.templates[index].id),
-                      subtitle: Text(controller.templates[index].name),
-                    );
+                    return templateWidgets[index];
                   },
                 ),
                 if (controller.isLoading) const Center(child: CircularProgressIndicator()),
